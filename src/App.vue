@@ -1,47 +1,45 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div class="container">
+<!--<h1>Brewery Explorer</h1>-->
+    <!-- Card for the Table -->
+    <Card title="Brewery Explorer">
+      <BreweryTable />
+    </Card>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+    <!-- Card for the Chart -->
+    <Card :title="'Brewery Distribution in ' + (countryFilter === 'all' ? 'all over the world' : countryFilter)">
+      <div class="charts">
+  
+      <BreweryTypeChart />
+      <BreweryStateChart />
+      
+      </div>
+    </Card>
 
-  <main>
-    <TheWelcome />
-  </main>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script setup>
+import { toRef } from 'vue'
+import Card from './components/common/Card.vue'
+import BreweryTable from './components/brewery/BreweryTable.vue'
+import BreweryTypeChart from './components/brewery/BreweryTypeChart.vue'
+import BreweryStateChart from './components/brewery/BreweryStateChart.vue'
+import { useBreweries } from '@/composables/useBreweries'
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+const { countryFilter } = useBreweries()
+</script>
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+<style scoped lang="scss">
+.charts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  .brewery-type-chart,
+  .state-chart {
+    flex: 1 1 45%;
   }
 }
 </style>
+
