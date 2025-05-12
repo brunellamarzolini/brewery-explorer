@@ -36,13 +36,20 @@ export function useBreweries() {
     perPage.value ? Math.ceil(total.value / perPage.value) : 1
   )
 
-  function buildParams() {
+
+  function buildPaginationParams() {
     const params = {
       page: page.value,
       per_page: perPage.value,
       //sort: sort.value,
     }
-    if (sort.value)                                     params.sort       = sort.value
+    if (sort.value)  params.sort = sort.value
+
+    return params
+  }
+
+  function buildMetaParams() {
+    const params = {}
     if (q.value.trim() && q.value.trim().length > 2)    params.by_name    = q.value.trim()
     if (countryFilter.value !== 'all')                  params.by_country = countryFilter.value
     if (stateFilter.value   !== 'all')                  params.by_state   = stateFilter.value
@@ -55,12 +62,14 @@ export function useBreweries() {
     loading.value = true
 
     try {
-      const params = buildParams()
+      const paginationParams = buildPaginationParams()
+      const metaParams = buildMetaParams()
+      const listParams = { ...paginationParams, ...metaParams }
 
       // Fetch breweries and metadata
       const [breweriesResponse, metaResponse] = await Promise.all([
-        axios.get(API_BASE_URL + '/breweries', { params }),
-        axios.get(API_BASE_URL + '/breweries/meta', { params }),
+        axios.get(API_BASE_URL + '/breweries', { params: listParams }),
+        axios.get(API_BASE_URL + '/breweries/meta', { params: metaParams }),
       ])
 
       breweries.value = breweriesResponse.data
@@ -100,7 +109,6 @@ export function useBreweries() {
   } */
 
 
-
   watch(countryFilter, () => {
     //fetchMeta()
     stateFilter.value = 'all' 
@@ -132,11 +140,11 @@ export function useBreweries() {
       debouncedFetchList(newVal);
   });
 
-
  /*  watch(page, () => {
     fetchList()
   })
  */
+
   instance = {
     breweries,
     total,

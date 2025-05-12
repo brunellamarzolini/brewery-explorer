@@ -102,10 +102,11 @@ function handleSort({ dir, key }) {
         <a :href="row.website_url" target="_blank">{{ row.name }}</a>
       </template>
       <template #address="{ row }">
-        <!-- todo check if lat and long exist-->
-        <a :href="`https://www.google.com/maps?q=${row.latitude},${row.longitude}`" target="_blank">
+        <a v-if="row.latitude && row.longitude"
+          :href="`https://www.google.com/maps?q=${row.latitude},${row.longitude}`" target="_blank">
           {{ row.street }}
         </a>
+        <span v-else>{{ row.street }}</span>
       </template>
       <template #phone="{ row }">
         <a :href="`tel:${row.phone}`">{{ row.phone }}</a>
