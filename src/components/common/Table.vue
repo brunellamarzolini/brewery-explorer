@@ -1,79 +1,76 @@
-<template>
-    <div class="table">
-        <div class="table-filters">
-            <slot name="filters" />
-        </div>
-    
-        <div class="table-wrapper">
-            <div v-if="loading" class="overlay">
-                <div class="spinner">Loading…</div>
-            </div>
 
-            <table>
-                <thead>
-                <tr>
-                    <th v-for="header in headers" :key="header.key" @click="header.sortable && sort(header.key)">
-                    {{ header.label }}
-                    <span v-if="header.sortable" :class="getSortClass(header.key)"></span>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="row in rows" :key="row.id">
-                    <td v-for="header in headers" :key="header.key">
-                    <slot :name="header.key" :row="row">{{ row[header.key] }}</slot>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-        </div>
-
-        <!-- Footer Slot -->
-        <div class="table-footer">
-            <slot name="footer" />
-        </div>
-    </div>
-  </template>
-  
 <script setup>
-    import { ref } from 'vue'
-  
-    const props = defineProps({
-        headers: { type: Array, required: true },
-        rows: { type: Array, required: true },
-        loading: { type: Boolean, default: false },
-        /* sortKey: { type: String, default: '' },
-        sortOrder: { type: String, default: 'asc' }, */
-    })
+import { ref } from 'vue'
 
-    const sortKey = ref(null) // Internal state for sort key
-    const sortOrder = ref('asc') // Internal state for sort order
-  
-    const emit = defineEmits(['update:sort'])
-  
-    function sort(key) {
-        if (sortKey.value === key) {
-            sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
-        } else {
-            sortKey.value = key
-            sortOrder.value = 'asc'
-        }
+const props = defineProps({
+    headers: { type: Array, required: true },
+    rows: { type: Array, required: true },
+    loading: { type: Boolean, default: false },
+})
 
-        emit('update:sort', { key: sortKey.value, dir: sortOrder.value })
-    }
-    
-    function getSortClass(key) {
-    if (sortKey.value === key) {
-        return sortOrder.value === 'asc' ? 'icon-sort-asc' : 'icon-sort-desc'
-    }
-    return 'icon-sort'
-    }
+const sortKey = ref(null)
+const sortOrder = ref('asc')
+
+const emit = defineEmits(['update:sort'])
+
+function sort(key) {
+  if (sortKey.value === key) {
+      sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
+  } else {
+      sortKey.value = key
+      sortOrder.value = 'asc'
+  }
+
+  emit('update:sort', { key: sortKey.value, dir: sortOrder.value })
+}
+
+function getSortClass(key) {
+  if (sortKey.value === key) {
+      return sortOrder.value === 'asc' ? 'icon-sort-asc' : 'icon-sort-desc'
+  }
+return 'icon-sort'
+}
 
 </script>
-  
-  <style lang="scss" scoped>
 
+<template>
+  <div class="table">
+      <div class="table-filters">
+          <slot name="filters" />
+      </div>
+  
+      <div class="table-wrapper">
+          <div v-if="loading" class="overlay">
+              <div class="spinner">Loading…</div>
+          </div>
+
+          <table>
+              <thead>
+              <tr>
+                  <th v-for="header in headers" :key="header.key" @click="header.sortable && sort(header.key)">
+                  {{ header.label }}
+                  <span v-if="header.sortable" :class="getSortClass(header.key)"></span>
+                  </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="row in rows" :key="row.id">
+                  <td v-for="header in headers" :key="header.key">
+                  <slot :name="header.key" :row="row">{{ row[header.key] }}</slot>
+                  </td>
+              </tr>
+              </tbody>
+          </table>
+
+      </div>
+
+      <div class="table-footer">
+          <slot name="footer" />
+      </div>
+  </div>
+</template>
+  
+<style lang="scss" scoped>
 .table {
   .table-filters {
     display: flex;
@@ -82,7 +79,7 @@
     margin-bottom: $space-3;
 
     @media (max-width: $breakpoint-lg) {
-     display: grid;
+    display: grid;
     }
   }
 
@@ -149,4 +146,4 @@
     content: '↓';
   }
 }
-  </style>
+</style>

@@ -51,7 +51,7 @@ a {
   }
 }
 
-input::placeholder {
+input, input::placeholder {
   font-family: $font-base;
 }
 

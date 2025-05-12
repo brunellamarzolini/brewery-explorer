@@ -1,3 +1,13 @@
+<script setup>
+
+const props = defineProps({
+  modelValue: { type: String, default: '' },
+  placeholder: { type: String, default: 'Search...' },
+})
+
+const emit = defineEmits(['update:modelValue'])
+</script>
+
 <template>
   <div class="search-input-wrapper">
     <input
@@ -9,16 +19,6 @@
     />
   </div>
 </template>
-
-<script setup>
-
-const props = defineProps({
-  modelValue: { type: String, default: '' },
-  placeholder: { type: String, default: 'Search...' },
-})
-
-const emit = defineEmits(['update:modelValue'])
-</script>
 
 <style scoped lang="scss">
 .search-input-wrapper {
@@ -35,7 +35,7 @@ const emit = defineEmits(['update:modelValue'])
 
   &:focus {
     outline: none;
-    border-color: $color-primary;
+    //border-color: $color-primary;
   }
 }
 </style>
