@@ -1,9 +1,3 @@
-<template>
-  <div class="brewery-type-chart" v-if="chartData">
-    <Bar :data="chartData" :options="chartOptions"/>
-  </div>
-</template>
-
 <script setup>
 import { computed, ref } from 'vue'
 import { Bar } from 'vue-chartjs'
@@ -11,14 +5,14 @@ import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, Li
 import DataLabelsPlugin from 'chartjs-plugin-datalabels'
 import { useBreweries } from '@/composables/useBreweries'
 
-const { allByType } = useBreweries()
+const { typeCounts } = useBreweries()
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, DataLabelsPlugin)
 
 // Compute the chart data dynamically based on the selected country
 const chartData = computed(() => {
-  const types = Object.keys(allByType.value)
-  const counts = Object.values(allByType.value)  
+  const types = Object.keys(typeCounts.value)
+  const counts = Object.values(typeCounts.value)  
 
   return {
     labels: types,
@@ -81,6 +75,12 @@ const chartOptions = {
   },
 }
 </script>
+
+<template>
+  <div class="brewery-type-chart" v-if="chartData">
+    <Bar :data="chartData" :options="chartOptions"/>
+  </div>
+</template>
 
 <style scoped lang="scss">
 .brewery-type-chart {

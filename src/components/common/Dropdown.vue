@@ -1,26 +1,3 @@
-<template>
-  <div class="dropdown" ref="dropdownRef">
-    <label>
-      {{ label }}
-    </label>
-    <div class="dropdown-wrapper" @click="toggleDropdown">
-      <div class="dropdown-selected">
-        {{ selectedOption }}
-      </div>
-      <ul v-if="isOpen" class="dropdown-options">
-        <li
-          v-for="opt in options"
-          :key="opt"
-          :class="{ active: opt === modelValue }"
-          @click="selectOption(opt)"
-        >
-          {{ opt }}
-        </li>
-      </ul>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
@@ -60,6 +37,29 @@ onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside)
 })
 </script>
+
+<template>
+  <div class="dropdown" ref="dropdownRef">
+    <label>
+      {{ label }}
+    </label>
+    <div class="dropdown-wrapper" @click="toggleDropdown">
+      <div class="dropdown-selected">
+        {{ selectedOption }}
+      </div>
+      <ul v-if="isOpen" class="dropdown-options">
+        <li
+          v-for="opt in options"
+          :key="opt"
+          :class="{ active: opt === modelValue }"
+          @click="selectOption(opt)"
+        >
+          {{ opt }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
 
 <style scoped lang="scss">
 .dropdown {

@@ -1,3 +1,13 @@
+<script setup>
+const props = defineProps({
+  title: {
+    type: String,
+    default: '',
+  },
+})
+</script>
+
+
 <template>
   <div class="card">
     <h3 class="card-title" v-if="title">{{ title }}</h3>
@@ -6,16 +16,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-
-const props = defineProps({
-  title: {
-    type: String,
-    default: '',
-  },
-})
-</script>
 
 <style scoped lang="scss">
 .card {

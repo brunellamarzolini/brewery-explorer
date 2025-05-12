@@ -1,33 +1,18 @@
-<template>
-  <div class="state-chart">
-    <div 
-      class="chart-container"
-      :style="{ height: chartHeight + 'px' }"
-    >
-    <!-- <div 
-      class="chart-container" 
-      :style="{ width: chartWidth + 'px' }"
-    > -->
-      <Bar ref="chartRef" :data="chartData" :options="chartOptions" />
-    </div>
-  </div>
-</template>
-
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 import DataLabelsPlugin from 'chartjs-plugin-datalabels'
 import { useBreweries } from '@/composables/useBreweries'
 
-const { allByState } = useBreweries()
+const { stateCounts } = useBreweries()
 const chartRef = ref(null)
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, DataLabelsPlugin)
 
 const chartData = computed(() => {
-  const states = Object.keys(allByState.value)
-  const counts = Object.values(allByState.value)
+  const states = Object.keys(stateCounts.value)
+  const counts = Object.values(stateCounts.value)
 
   /* const sortedStates = states
     .map((state, index) => ({ state, count: counts[index] }))
@@ -113,6 +98,21 @@ const chartOptions = {
 
 
 </script>
+
+<template>
+  <div class="state-chart">
+    <div 
+      class="chart-container"
+      :style="{ height: chartHeight + 'px' }"
+    >
+    <!-- <div 
+      class="chart-container" 
+      :style="{ width: chartWidth + 'px' }"
+    > -->
+      <Bar ref="chartRef" :data="chartData" :options="chartOptions" />
+    </div>
+  </div>
+</template>
 
 <style scoped lang="scss">
 .state-chart {
