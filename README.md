@@ -1,6 +1,6 @@
 # brewery-explore
 
-Brewery Explorer is a Vue 3 application that allows users to explore breweries by country, state, type, and name. It provides a table view of breweries, along with charts for visualizing brewery distribution by state and type.
+Brewery Explorer is a Vue 3 application that allows users to explore breweries by country, state, type, and name via Open Brewery DB. It provides a table view of breweries, along with charts for visualizing brewery distribution by state and type.
 
 ## Features
 
@@ -27,7 +27,7 @@ Brewery Explorer is a Vue 3 application that allows users to explore breweries b
 
 1. Clone the repository:
    ```bash
-   git clone https://gitlab.com/personal-projects-brunella-marzolini/brewery-explorer.git
+   git clone https://github.com/brunellamarzolini/brewery-explorer.git
    cd brewery-explorer
 
 
