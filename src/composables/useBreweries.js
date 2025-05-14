@@ -4,7 +4,8 @@ import { debounce } from '@/utils/debounce';
 import { useToast } from '@/composables/useToast';
 const { showToast } = useToast();
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+//const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = "https://api.openbrewerydb.org/v1"
 
 let instance = null
 
