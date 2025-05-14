@@ -90,24 +90,6 @@ export function useBreweries() {
     }
   }
 
-  // Fetch meta by_state and by_type
-  // I need to keep it separate beacause i need this only when the country changes
-  /* async function fetchMeta() {
-    try {
-      const params = {}
-      params.by_country = countryFilter.value
-      const { data } = await axios.get(
-        'https://api.openbrewerydb.org/v1/breweries/meta',
-        { params }
-      )
-      stateOptions.value = data.by_state || {}
-      typeOptions.value  = data.by_type  || {}
-    } catch (e) {
-      const errorMessage = 'Failed to load breweries metadata';
-      showToast(errorMessage, 'error');
-    }
-  } */
-
 
   watch(countryFilter, () => {
     //fetchMeta()
@@ -128,9 +110,7 @@ export function useBreweries() {
   watch(page, fetchList)
 
   const debouncedFetchList = debounce((currentValue) => {
-    //if (currentValue.trim().length == 0 || currentValue.trim().length > 2) {
       fetchList();
-    //} 
   }, 500);
 
   //this api works with 3 chars at least. 
@@ -139,11 +119,6 @@ export function useBreweries() {
       page.value = 1
       debouncedFetchList(newVal);
   });
-
- /*  watch(page, () => {
-    fetchList()
-  })
- */
 
   instance = {
     breweries,
@@ -161,7 +136,6 @@ export function useBreweries() {
     stateFilter,
     typeFilter,
     totalPages,
-    //fetchMeta,
     fetchList,
   }
 

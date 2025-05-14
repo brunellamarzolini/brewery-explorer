@@ -1,8 +1,14 @@
 <script setup>
 
 const props = defineProps({
-  modelValue: { type: String, default: '' },
-  placeholder: { type: String, default: 'Search...' },
+  modelValue: { 
+    type: String, 
+    default: '' 
+  },
+  placeholder: { 
+    type: String, 
+    default: 'Search...' 
+  },
 })
 
 const emit = defineEmits(['update:modelValue'])

@@ -2,9 +2,17 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const props = defineProps({
-  label: { type: String, required: false },
-  options: { type: Array, default: () => [] },
-  modelValue: { default: 'all' },
+  label: { 
+    type: String, 
+    required: false 
+  },
+  options: { 
+    type: Array, 
+    default: () => [] 
+  },
+  modelValue: { 
+    default: 'all' 
+  },
 })
 
 const emit = defineEmits(['update:modelValue'])

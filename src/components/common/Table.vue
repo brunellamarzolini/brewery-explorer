@@ -3,9 +3,18 @@
 import { ref } from 'vue'
 
 const props = defineProps({
-    headers: { type: Array, required: true },
-    rows: { type: Array, required: true },
-    loading: { type: Boolean, default: false },
+    headers: { 
+      type: Array, 
+      required: true 
+    },
+    rows: { 
+      type: Array, 
+      required: true 
+    },
+    loading: { 
+      type: Boolean, 
+      default: false 
+    },
 })
 
 const sortKey = ref(null)

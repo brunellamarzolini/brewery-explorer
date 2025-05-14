@@ -19,7 +19,7 @@ const chartData = computed(() => {
     datasets: [
       {
         data: counts,
-        backgroundColor: types.map((_, index) => getRandomColor(index)),
+        backgroundColor: '#659B5E', //types.map((_, index) => getRandomColor(index)),
         borderColor: '#ffffff',
         borderWidth: 2,
         borderRadius: 4,

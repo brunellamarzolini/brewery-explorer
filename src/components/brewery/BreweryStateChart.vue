@@ -34,7 +34,7 @@ const chartData = computed(() => {
     datasets: [
       {
         data: sortedStates.map((item) => item.count),
-        //backgroundColor: sortedStates.map((_, index) => getRandomColor(index)),
+        backgroundColor: '#659B5E', //sortedStates.map((_, index) => getRandomColor(index)),
         borderColor: '#ffffff',
         borderWidth: 2,
         borderRadius: 4,
@@ -47,7 +47,7 @@ const chartData = computed(() => {
   }
 })
 
-// chart height based on number of bars
+// container chart height based on number of bars
 const barHeight = 30
 const chartHeight = computed(() => {
   const numberOfBars = chartData.value.labels.length
@@ -105,10 +105,6 @@ const chartOptions = {
       class="chart-container"
       :style="{ height: chartHeight + 'px' }"
     >
-    <!-- <div 
-      class="chart-container" 
-      :style="{ width: chartWidth + 'px' }"
-    > -->
       <Bar ref="chartRef" :data="chartData" :options="chartOptions" />
     </div>
   </div>

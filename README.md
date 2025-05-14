@@ -7,9 +7,6 @@ Brewery Explorer is a Vue 3 application that allows users to explore breweries b
 - **Search Breweries**: Filter breweries by name, country, state, and type.
 - **Charts**: Visualize brewery distribution by state and type using bar charts.
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
 
 ## Tech Stack
 
@@ -30,7 +27,7 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/brewery-explorer.git
+   git clone https://gitlab.com/personal-projects-brunella-marzolini/brewery-explorer.git
    cd brewery-explorer
 
 
@@ -51,8 +48,3 @@ npm run dev
 The application will be available at http://localhost:5173.
 
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```

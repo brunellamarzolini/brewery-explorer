@@ -1,9 +1,18 @@
 <script setup>
     
 const props = defineProps({
-  totalPages: { type: Number, required: true },
-  pageSize: { type: Number, default: 10 },
-  currentPage: { type: Number, default: 1 },
+  totalPages: { 
+    type: Number, 
+    required: true 
+  },
+  pageSize: { 
+    type: Number, 
+    default: 10 
+  },
+  currentPage: { 
+    type: Number, 
+    default: 1 
+  },
 })
 
 const emit = defineEmits(['update:currentPage'])
