@@ -19,7 +19,7 @@ const chartData = computed(() => {
     datasets: [
       {
         data: counts,
-        backgroundColor: '#659B5E', //types.map((_, index) => getRandomColor(index)),
+        backgroundColor: '#659B5E',
         borderColor: '#ffffff',
         borderWidth: 2,
         borderRadius: 4,
@@ -31,12 +31,6 @@ const chartData = computed(() => {
     ],
   }
 })
-
-// Generate a random color for each bar
-function getRandomColor(index) {
-  const colors = ['#659B5E', '#FF9F43', '#4A90E2', '#9B59B6', '#FF66CC']
-  return colors[index % colors.length]
-}
 
 const chartOptions = {
   responsive: true,

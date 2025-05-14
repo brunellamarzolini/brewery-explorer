@@ -4,7 +4,6 @@ import { debounce } from '@/utils/debounce';
 import { useToast } from '@/composables/useToast';
 const { showToast } = useToast();
 
-//const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const API_BASE_URL = "https://api.openbrewerydb.org/v1"
 
 let instance = null
@@ -25,7 +24,6 @@ export function useBreweries() {
   const page          = ref(1)
   const perPage       = ref(10)
   const q             = ref('')
-  //const sort = ref('name:asc')
   const sort          = ref('')
   const countryFilter = ref('United States')
   const stateFilter   = ref('all')
@@ -42,7 +40,6 @@ export function useBreweries() {
     const params = {
       page: page.value,
       per_page: perPage.value,
-      //sort: sort.value,
     }
     if (sort.value)  params.sort = sort.value
 
@@ -93,7 +90,6 @@ export function useBreweries() {
 
 
   watch(countryFilter, () => {
-    //fetchMeta()
     stateFilter.value = 'all' 
     typeFilter.value  = 'all'  
     page.value = 1
@@ -114,7 +110,7 @@ export function useBreweries() {
       fetchList();
   }, 500);
 
-  //this api works with 3 chars at least. 
+  // this api works with 3 chars at least. 
   // I didn't used the search api because it has another endpoint and I can't filter by state or type
   watch(q, (newVal) => {
       page.value = 1

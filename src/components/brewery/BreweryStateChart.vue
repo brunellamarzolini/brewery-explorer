@@ -14,10 +14,6 @@ const chartData = computed(() => {
   const states = Object.keys(stateCounts.value)
   const counts = Object.values(stateCounts.value)
 
-  /* const sortedStates = states
-    .map((state, index) => ({ state, count: counts[index] }))
-    .sort((a, b) => b.count - a.count) */
-
   // this is because the meta api has an error  and for US returns both Missouri and MIssouri
   const normalizedStateCounts = states.reduce((acc, state, index) => {
     const normalizedState = state.toLowerCase()
@@ -34,7 +30,7 @@ const chartData = computed(() => {
     datasets: [
       {
         data: sortedStates.map((item) => item.count),
-        backgroundColor: '#659B5E', //sortedStates.map((_, index) => getRandomColor(index)),
+        backgroundColor: '#659B5E', 
         borderColor: '#ffffff',
         borderWidth: 2,
         borderRadius: 4,
@@ -53,18 +49,6 @@ const chartHeight = computed(() => {
   const numberOfBars = chartData.value.labels.length
   return Math.max(numberOfBars * barHeight, 400)
 })
-
-/* const chartWidth = computed(() => {
-  const numberOfBars = chartData.value.labels.length
-  return Math.max(numberOfBars * barHeight, 400)
-}) */
-
-
-// bar colors
-function getRandomColor(index) {
-  const colors = ['#659B5E', '#FF9F43', '#4A90E2', '#9B59B6', '#FF66CC']
-  return colors[index % colors.length]
-}
 
 const chartOptions = {
   responsive: true,
@@ -114,11 +98,9 @@ const chartOptions = {
 .state-chart {
   height: 400px;
   overflow-x: auto;
-  //overflow-y: auto;
 
   .chart-container {
     width: 100%;
-    //height: 400px;
   }
 }
 </style>
